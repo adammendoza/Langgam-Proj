@@ -583,7 +583,17 @@ def make_stun(action):
 
 def apply_effect(effect, bee, duration):
     """Apply a status effect to a Bee that lasts for duration turns."""
-    "*** YOUR CODE HERE ***"
+    OG_action = bee.action
+    compound_action = effect(bee.action)
+    counter = 0
+    def decisive_action(colony):
+        nonlocal counter
+        if counter < duration:
+            compound_action(colony)
+        else:
+            OG_action(colony)
+        counter += 1
+    bee.action = decisive_action
 
 
 class SlowThrower(ThrowerAnt):
