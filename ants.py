@@ -536,22 +536,36 @@ class BodyguardAnt(Ant):
     def action(self, colony):
         "*** YOUR CODE HERE ***"
 
-
 class QueenAnt(ThrowerAnt):
     """The Queen of the colony.  The game is over if a bee enters her place."""
 
     name = 'Queen'
-    "*** YOUR CODE HERE ***"
+    food_cost = 2
     implemented = False
+    num_queens = 0
 
     def __init__(self):
-        ThrowerAnt.__init__(self, 1)  #
-        "*** YOUR CODE HERE ***"
+        ThrowerAnt.__init__(self, 1)
+        QueenAnt.num_queens = 1 # make a QueenAnt
 
     def action(self, colony):
-        """A queen ant throws a leaf, but also doubles the damange of ants
+        """A queen ant throws a leaf, but also doubles the damage of ants
         behind her.  Imposter queens do only one thing: die."""
-        "*** YOUR CODE HERE ***"
+        if num_queens = 1:
+            colony.queen = QueenPlace(colony.queen, self.place)
+        elif num_queens > 1:
+            self.place.remove_insect(self) 
+        # ????
+
+class QueenPlace(Place): 
+
+    def __init__(self, original, new):
+        self.original = original
+        self.new = new
+                 
+    @property
+    def bees(self):
+        return self.original.bees + self.new.bees
 
 class AntRemover(Ant):
     """Allows the player to remove ants from the board in the GUI."""
